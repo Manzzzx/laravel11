@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Models;
+
+use Illuminate\Support\Arr;
+
 class Post 
 {
     public static function all()
@@ -21,5 +24,14 @@ class Post
                 'body' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit voluptatibus laboriosam hic, autem aperiam assumenda?'
             ]
             ];
+    }
+
+
+    public static function find($slug) {
+        // return Arr::first(Post::all(), function ($post) use ($slug) {
+        //     return $post['slug'] == $slug;
+        // });
+        
+        return Arr::first(static::all(), fn ($post) => $post['slug'] == $slug);
     }
 }
